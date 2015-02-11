@@ -17,7 +17,7 @@
 #   gem: json
 #
 # USAGE:
-#   
+#
 #
 # NOTES:
 #
