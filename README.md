@@ -1,18 +1,19 @@
 ## Sensu-Plugins-disk-checks
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-github.svg?branch=master)][1]
-[![Gem Version](https://badge.fury.io/rb/sensu-plugins-github.svg)][2]
-[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-github/badges/gpa.svg)][3]
-[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-github/badges/coverage.svg)][4]
-[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-github.svg)][5]
+[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-github.svg?branch=master)(https://travis-ci.org/sensu-plugins/sensu-plugins-github)]
+[![Gem Version](https://badge.fury.io/rb/sensu-plugins-github.svg(http://badge.fury.io/rb/sensu-plugins-github))
+[![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-github/badges/gpa.svg)(https://codeclimate.com/github/sensu-plugins/sensu-plugins-github)]
+[![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-github/badges/coverage.svg)(https://codeclimate.com/github/sensu-plugins/sensu-plugins-github)]
+[![Dependency Status](https://gemnasium.com/sensu-plugins/sensu-plugins-github.svg)(https://gemnasium.com/sensu-plugins/sensu-plugins-github)]
 
 ## Functionality
 
+**github-repo-metrics**
+
+Interacts with Github API to generate metrics about repo.
+
 ## Files
- *
- *
- *
- *
+ * bin/github-repo-metrics.rb
 
 ## Usage
 
@@ -33,7 +34,7 @@ You can also download the key from /certs/ within each repository.
 
 #### Bundler
 
-Add *sensu-plugins-disk-checks* to your Gemfile and run `bundle install` or `bundle update`
+Add *sensu-plugins-github* to your Gemfile and run `bundle install` or `bundle update`
 
 #### Chef
 
@@ -41,7 +42,7 @@ Using the Sensu **sensu_gem** LWRP
 ```
 sensu_gem 'sensu-plugins-github' do
   options('--prerelease')
-  version '0.0.1.alpha.4'
+  version '0.0.1.alpha.1'
 end
 ```
 
@@ -49,7 +50,7 @@ Using the Chef **gem_package** resource
 ```
 gem_package 'sensu-plugins-github' do
   options('--prerelease')
-  version '0.0.1.alpha.4'
+  version '0.0.1.alpha.1'
 end
 ```
 

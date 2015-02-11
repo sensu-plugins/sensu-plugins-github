@@ -13,13 +13,14 @@
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
-#   gem: <?>
+#   gem: rest-client
+#   gem: json
 #
 # USAGE:
-#   example commands
+#   
 #
 # NOTES:
-#   Does it behave differently on specific platforms, specific use cases, etc
+#
 #
 # LICENSE:
 #   Copyright 2013 Nick Stielau, @nstielau
@@ -27,11 +28,13 @@
 #   for details.
 #
 
-require 'rubygems'
 require 'sensu-plugin/metric/cli'
 require 'rest-client'
 require 'json'
 
+#
+# AggregateMetrics
+#
 class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :api,
          short: '-a URL',
@@ -71,10 +74,19 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
          long: '--debug',
          description: 'Verbose output'
 
+  # Build the api request
+  #
+  # @param [String] repo the repo to get the metrics from him
+  # @param [String] subresource
+  #
   def repo_api_request(repo, subresource)
     api_request("/repos/#{config[:owner]}/#{repo}/#{subresource}")
   end
 
+  # Issue the api request
+  #
+  # @param [String] resource
+  #
   def api_request(resource)
     endpoint = config[:api] + resource
     request = RestClient::Resource.new(endpoint, timeout: config[:timeout])
@@ -86,7 +98,7 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
   rescue Errno::ECONNREFUSED
     warning 'Connection refused'
   rescue RestClient::RequestFailed => e
-    # TODO: Better handle github rate limiting case
+    # #YELLOW Better handle github rate limiting case
     # (with data from e.response.headers)
     warning "Request failed: #{e.inspect}"
   rescue RestClient::RequestTimeout
@@ -97,10 +109,14 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
     warning 'Github API returned invalid JSON'
   end
 
+  # Build an api request to get all repos in an org
+  #
   def acquire_org_repos
     api_request("/orgs/#{config[:owner]}/repos?type=sources").map { |r| r[:name] }
   end
 
+  # Main function
+  #
   def run
     ([config[:repo] || acquire_org_repos].flatten).each do |repo|
       schema = "#{config[:scheme]}.#{config[:owner]}.#{repo}"

@@ -3,7 +3,6 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'date'
 
-
 if RUBY_VERSION < '2.0.0'
   require 'sensu-plugins-github'
 else
@@ -18,8 +17,8 @@ Gem::Specification.new do |s|
   s.authors                = ["Yieldbot, Inc. and contributors"]
   s.email                  = '<sensu-users@googlegroups.com>'
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-github'
-  s.summary                = ''
-  s.description            = ''
+  s.summary                = 'Plugins to interact with the Github API'
+  s.description            = 'Plugins to interact with the Github API'
   s.license                = 'MIT'
   s.date                   = Date.today.to_s
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
@@ -31,23 +30,17 @@ Gem::Specification.new do |s|
   s.platform               = ruby
   s.required_ruby_version  = '>= 1.9.3'
 
-  
-  s.add_development_dependency 'codeclimate-test-reporter' 'XXX'
-  
+  s.add_runtime_dependency 'json'
+  s.add_runtime_dependency 'rest-client'
+  s.add_runtime_dependency 'sensu-plugin'
+
+  s.add_development_dependency 'codeclimate-test-reporter'
   s.add_development_dependency 'rubocop' '~> 0.17.0'
-  
   s.add_development_dependency 'rspec' '~> 3.1'
-  
   s.add_development_dependency 'bundler' '~> 1.7'
-  
   s.add_development_dependency 'rake' '~> 10.0'
-  
-  s.add_development_dependency 'github-markup' 'XXX'
-  
-  s.add_development_dependency 'redcarpet' 'XXX'
-  
-  s.add_development_dependency 'yard' 'XXX'
-  
-  s.add_development_dependency 'pry' 'XXX'
-  
+  s.add_development_dependency 'github-markup'
+  s.add_development_dependency 'redcarpet'
+  s.add_development_dependency 'yard'
+  s.add_development_dependency 'pry'
 end
