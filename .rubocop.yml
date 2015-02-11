@@ -1,25 +1,24 @@
 
-MethodLength
+MethodLength:
     Max: 200
 
-LineLength
+LineLength:
     Max: 160
 
-FileName
+FileName:
     Enabled: false
 
-PerceivedComplexity
+PerceivedComplexity:
     Enabled: false
 
-CyclomaticComplexity
+CyclomaticComplexity:
     Enabled: false
 
-ClassLength
+ClassLength:
     Enabled: false
 
-IfUnlessModifier
+IfUnlessModifier:
     Enabled: false
 
-RegexpLiteral
+RegexpLiteral:
     Enabled: false
-
