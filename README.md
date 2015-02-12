@@ -17,6 +17,8 @@ Interacts with Github API to generate metrics about repo.
 
 ## Usage
 
+Your github token must be placed in *~/.ssh/git_token*.  You should not be entring secure items on the commandline.  For the plugin will work be backwards compatible but the ability to specify the token on the commandline will be removed in the **0.1.0** release.
+
 ## Installation
 
 Add the public key (if you haven’t already) as a trusted certificate

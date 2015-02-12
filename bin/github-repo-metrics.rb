@@ -31,6 +31,7 @@
 require 'sensu-plugin/metric/cli'
 require 'rest-client'
 require 'json'
+require 'sensu-plugins-github/auth'
 
 #
 # AggregateMetrics
@@ -45,7 +46,8 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
   option :token,
          short: '-t TOKEN',
          long: '--token TOKEN',
-         description: 'Github OAuth Token'
+         description: 'Github OAuth Token',
+         default: SensuPluginsGithub.acquire_git_token
 
   option :repo,
          short: '-r REPO',
