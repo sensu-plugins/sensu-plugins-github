@@ -89,7 +89,7 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
   #
   # @param [String] resource
   #
-  def api_request(resource)
+  def api_request(resource) #rubocop:disable all
     endpoint = config[:api] + resource
     request = RestClient::Resource.new(endpoint, timeout: config[:timeout])
     headers = {}
@@ -119,7 +119,7 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
 
   # Main function
   #
-  def run
+  def run #rubocop:disable all
     ([config[:repo] || acquire_org_repos].flatten).each do |repo|
       schema = "#{config[:scheme]}.#{config[:owner]}.#{repo}"
       now = Time.now.to_i
