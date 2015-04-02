@@ -7,3 +7,10 @@
 
 #### 0.0.2
 * add ability to read got token from file
+
+#### 0.0.3
+
+* add metadata to gems
+* pin all dev and runtime dependencies
+* add chef provisioner to Vagrantfile
+* fix rubocop issues
