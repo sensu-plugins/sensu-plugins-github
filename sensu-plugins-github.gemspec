@@ -25,14 +25,14 @@ Gem::Specification.new do |s|
                                'development_status' => 'active',
                                'production_status'  => 'unstable - testing recommended'
   }
-  s.name                   = 'sensu-plugins-sensu-plugins-github'
+  s.name                   = 'sensu-plugins-github'
   s.platform               = Gem::Platform::RUBY
   s.require_paths          = ['lib']
   s.required_ruby_version  = '>= 1.9.3'
   s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
-  s.summary                = 'Sensu plugins for workign with Github'
+  s.summary                = 'Sensu plugins for working with Github'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
-  s.version                = SensuPluginsGithub::VERSION
+  s.version                = SensuPluginsGithub::Version::VER_STRING
 
   s.add_runtime_dependency 'json',         '1.8.2'
   s.add_runtime_dependency 'rest-client',  '1.8.0'
