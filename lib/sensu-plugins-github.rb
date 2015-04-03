@@ -1,7 +1,15 @@
+
+require 'sensu-plugins-github/version'
+
+# Load the defaults
+
 #
-# Set gem version
+# Default class
 #
 module SensuPluginsGithub
-  # Gem version
-  VERSION = '0.0.2'
+  class << self
+  end
+
+  class << self
+  end
 end
