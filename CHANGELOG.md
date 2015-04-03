@@ -14,3 +14,5 @@
 * pin all dev and runtime dependencies
 * add chef provisioner to Vagrantfile
 * fix rubocop issues
+* add new version module
+* add new version and bump tasks
