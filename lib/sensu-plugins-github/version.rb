@@ -6,9 +6,9 @@ module SensuPluginsGithub
   module Version
     MAJOR = 0
     MINOR = 0
-    PATCH = 1
+    PATCH = 3
 
-    VER_STRING = [MAJOR, MINOR, PATCH, 'alpha.3'].compact.join('.')
+    VER_STRING = [MAJOR, MINOR, PATCH].compact.join('.')
 
     NAME   = 'sensu-plugins-github'
     BANNER = "#{NAME} v%s"
