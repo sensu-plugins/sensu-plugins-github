@@ -1,4 +1,3 @@
-
 require 'sensu-plugins-github/version'
 
 # Load the defaults
