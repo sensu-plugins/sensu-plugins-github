@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
                                'production_status'  => 'unstable - testing recommended',
                                'release_draft'      => 'false',
                                'release_prerelease' => 'false'
-  }
+                              }
   s.name                   = 'sensu-plugins-github'
   s.platform               = Gem::Platform::RUBY
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
@@ -37,7 +37,6 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsGithub::Version::VER_STRING
 
-  s.add_runtime_dependency 'json',         '1.8.2'
   s.add_runtime_dependency 'rest-client',  '1.8.0'
   s.add_runtime_dependency 'sensu-plugin', '1.1.0'
 
