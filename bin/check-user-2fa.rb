@@ -1,15 +1,14 @@
 #! /usr/bin/env ruby
 #
-#   github-repo-metrics
+#   check-user-2fa.rb
 #
 # DESCRIPTION:
 #   Interacts with Github API to generate metrics about repo.
 #
 # OUTPUT:
-#   metric data
 #
 # PLATFORMS:
-#   Linux
+#   All
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
@@ -23,16 +22,12 @@
 #
 #
 # LICENSE:
-#   Copyright 2013 Nick Stielau, @nstielau
+#   Copyright 2015 Yieldbot, devops@yieldbot.com
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 #
 
 $:.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
-
-# require 'sensu-plugin/check/cli'
-# require 'rest-client'
-# require 'json'
 require 'sensu-plugins-github'
 
 class CheckUser2FA < Sensu::Plugin::Check::CLI

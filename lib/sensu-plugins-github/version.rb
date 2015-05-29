@@ -10,19 +10,19 @@ module SensuPluginsGithub
 
     VER_STRING = [MAJOR, MINOR, PATCH].compact.join('.')
 
-    NAME   = 'sensu-plugins-github'
-    BANNER = "#{NAME} v%s"
-
-    module_function
-
-    def version
-      format(BANNER, VER_STRING)
-    end
-
-    def json_version
-      {
-        'version' => VER_STRING
-      }.to_json
-    end
+    # NAME   = 'sensu-plugins-github'
+    # BANNER = "#{NAME} v%s"
+    #
+    # module_function
+    #
+    # def version
+    #   format(BANNER, VER_STRING)
+    # end
+    #
+    # def json_version
+    #   {
+    #     'version' => VER_STRING
+    #   }.to_json
+    # end
   end
 end
