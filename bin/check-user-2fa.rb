@@ -47,18 +47,11 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
          description: 'Github Org',
          required: true
 
-         option :table_names,
-         short:       '-t N',
-         long:        '--table-names NAMES',
-         proc:        proc { |a| a.split(/[,;]\s*/) },
-         description: 'Table names to check. Separated by , or ;. If not specified, check all tables'
-
   option :exclude,
          short: '-x E',
-         long: '--exclude_list EXCLUDE_LIST',
+         long: '--exclude-list EXCLUDE_LIST',
          proc:        proc { |a| a.split(/[,;]\s*/) },
-         description: 'List of users to exclude',
-         required: true
+         description: 'List of users to exclude'
 
   def run
 
@@ -68,9 +61,13 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
     # This is the default url and will be fine for most people, github enterprise customers will have a url based upon the org name and will need to set it at the commandline.
     api_url = config[:api] || 'https://api.github.com'
 
+    # List to hold users who do not have 2FA
+    user_list = []
+
     data = SensuPluginsGithub::Api::api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", api_url, config[:token])
     data.each do |d|
-      puts d[:login]
+      user_list << d[:login] if config[:exclude].include?(d[:login])
     end
+    puts user_list
   end
 end
