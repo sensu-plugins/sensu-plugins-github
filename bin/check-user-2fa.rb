@@ -53,14 +53,15 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
          proc:        proc { |a| a.split(/[,;]\s*/) },
          description: 'Table names to check. Separated by , or ;. If not specified, check all tables'
 
-
   option :exclude,
          short: '-x E',
          long: '--exclude_list EXCLUDE_LIST',
+         proc:        proc { |a| a.split(/[,;]\s*/) },
          description: 'List of users to exclude',
          required: true
 
   def run
+
 
     # Set the token from the commandline or read it in from a file.  Preference is given towards the later and at some point it may be enforced.
     token = config[:token] || SensuPluginsGithub::Auth::acquire_git_token
