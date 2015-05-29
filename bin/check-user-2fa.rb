@@ -28,13 +28,12 @@
 #   for details.
 #
 
-require 'sensu-plugin/check/cli'
-require 'rest-client'
-require 'json'
-require 'sensu-plugins-github'
-# require 'sensu-plugins-github/auth'
-# require 'sensu-plugins-github/api'
+$:.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
 
+# require 'sensu-plugin/check/cli'
+# require 'rest-client'
+# require 'json'
+require 'sensu-plugins-github'
 
 class CheckUser2FA < Sensu::Plugin::Check::CLI
   option :api,
@@ -47,7 +46,7 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
          short: '-t TOKEN',
          long: '--token TOKEN',
          description: 'Github OAuth Token',
-         default: SensuPluginsGithub.acquire_git_token
+         default: SensuPluginsGithub::Auth::acquire_git_token
 
   option :org,
          short: '-o ORG',
@@ -56,6 +55,6 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
          required: true
 
   def run
-    puts SensuPluginsGithub.api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled")
+    puts SensuPluginsGithub::API::api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", config[:api], config[:token])
   end
 end
