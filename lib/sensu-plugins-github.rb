@@ -8,13 +8,13 @@ require 'json'
 
 # Load the defaults
 
+# #
+# # Default class
+# #
+# module SensuPluginsGithub
+#   class << self
+#   end
 #
-# Default class
-#
-module SensuPluginsGithub
-  class << self
-  end
-
-  class << self
-  end
-end
+#   class << self
+#   end
+# end

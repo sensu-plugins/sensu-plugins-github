@@ -2,13 +2,15 @@
 # Issue Api Request
 #
 module SensuPluginsGithub
-  module API
+  module Api
     # Issue the api request
     #
     # @param [String] resource
     #
     def self.api_request(resource, api, token) #rubocop:disable all
       endpoint = api + resource
+      puts endpoint
+      puts token
       request = RestClient::Resource.new(endpoint, timeout: 30)
       headers = {}
       headers[:Authorization] = "token #{ token }"

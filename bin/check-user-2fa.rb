@@ -55,6 +55,6 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
          required: true
 
   def run
-    puts SensuPluginsGithub::API::api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", config[:api], config[:token])
+    puts SensuPluginsGithub::Api::api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", config[:api], config[:token])
   end
 end
