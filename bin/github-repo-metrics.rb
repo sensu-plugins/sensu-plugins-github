@@ -27,10 +27,8 @@
 #   for details.
 #
 
-require 'sensu-plugin/metric/cli'
-require 'rest-client'
-require 'json'
-require 'sensu-plugins-github/auth'
+$:.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
+require 'sensu-plugins-github'
 
 #
 # AggregateMetrics
