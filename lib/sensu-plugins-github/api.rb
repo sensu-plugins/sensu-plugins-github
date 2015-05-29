@@ -3,8 +3,6 @@
 #
 module SensuPluginsGithub
   module Api
-    require 'sensu-plugin/check/cli'
-
     # Issue the api request
     #
     # @param [String] resource
