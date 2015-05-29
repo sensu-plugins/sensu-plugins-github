@@ -62,7 +62,6 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
 
   def run
 
-
     # Set the token from the commandline or read it in from a file.  Preference is given towards the later and at some point it may be enforced.
     token = config[:token] || SensuPluginsGithub::Auth::acquire_git_token
 
