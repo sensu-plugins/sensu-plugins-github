@@ -34,14 +34,12 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
   option :api,
          short: '-a URL',
          long: '--api URL',
-         description: 'Github API URL',
-         default: 'https://api.github.com'
+         description: 'Github API URL'
 
   option :token,
          short: '-t TOKEN',
          long: '--token TOKEN',
-         description: 'Github OAuth Token',
-         default: SensuPluginsGithub::Auth::acquire_git_token
+         description: 'Github OAuth Token'
 
   option :org,
          short: '-o ORG',
@@ -49,7 +47,30 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
          description: 'Github Org',
          required: true
 
+         option :table_names,
+         short:       '-t N',
+         long:        '--table-names NAMES',
+         proc:        proc { |a| a.split(/[,;]\s*/) },
+         description: 'Table names to check. Separated by , or ;. If not specified, check all tables'
+
+
+  option :exclude,
+         short: '-x E',
+         long: '--exclude_list EXCLUDE_LIST',
+         description: 'List of users to exclude',
+         required: true
+
   def run
-    puts SensuPluginsGithub::Api::api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", config[:api], config[:token])
+
+    # Set the token from the commandline or read it in from a file.  Preference is given towards the later and at some point it may be enforced.
+    token = config[:token] || SensuPluginsGithub::Auth::acquire_git_token
+
+    # This is the default url and will be fine for most people, github enterprise customers will have a url based upon the org name and will need to set it at the commandline.
+    api_url = config[:api] || 'https://api.github.com'
+
+    data = SensuPluginsGithub::Api::api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", api_url, config[:token])
+    data.each do |d|
+      puts d[:login]
+    end
   end
 end
