@@ -3,12 +3,6 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'date'
 
-if RUBY_VERSION < '2.0.0'
-  require 'sensu-plugins-github'
-else
-  require_relative 'lib/sensu-plugins-github'
-end
-
 pvt_key = '~/.ssh/gem-private_key.pem'
 
 Gem::Specification.new do |s|
@@ -35,7 +29,6 @@ Gem::Specification.new do |s|
   s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
   s.summary                = 'Sensu plugins for Github'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
-  s.version                = SensuPluginsGithub::Version::VER_STRING
 
   s.add_runtime_dependency 'json',         '1.8.2'
   s.add_runtime_dependency 'rest-client',  '1.8.0'
@@ -50,4 +43,13 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'redcarpet',                 '~> 3.2'
   s.add_development_dependency 'yard',                      '~> 0.8'
   s.add_development_dependency 'pry',                       '~> 0.10'
+
+  if RUBY_VERSION < '2.0.0'
+    require 'sensu-plugins-github'
+  else
+    require_relative 'lib/sensu-plugins-github'
+  end
+
+  s.version                = SensuPluginsGithub::Version::VER_STRING
+
 end
