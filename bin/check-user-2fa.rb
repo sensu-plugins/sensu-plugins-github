@@ -54,29 +54,28 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
          description: 'List of users to exclude'
 
   def api_request(resource, api, token) #rubocop:disable all
-        endpoint = api + resource
-        request = RestClient::Resource.new(endpoint, timeout: 30)
-        headers = {}
-        headers[:Authorization] = "token #{ token }"
-        JSON.parse(request.get(headers), symbolize_names: true)
-      rescue RestClient::ResourceNotFound
-        CLI::warning "Resource not found (or not accessible): #{resource}"
-      rescue Errno::ECONNREFUSED
-        warning 'Connection refused'
-      rescue RestClient::RequestFailed => e
-        # #YELLOW Better handle github rate limiting case
-        # (with data from e.response.headers)
-        warning "Request failed: #{e.inspect}"
-      rescue RestClient::RequestTimeout
-        warning 'Connection timed out'
-      rescue RestClient::Unauthorized
-        warning 'Missing or incorrect Github API credentials'
-      rescue JSON::ParserError
-        warning 'Github API returned invalid JSON'
-      end
+      endpoint = api + resource
+      request = RestClient::Resource.new(endpoint, timeout: 30)
+      headers = {}
+      headers[:Authorization] = "token #{ token }"
+      JSON.parse(request.get(headers), symbolize_names: true)
+    rescue RestClient::ResourceNotFound
+      CLI::warning "Resource not found (or not accessible): #{resource}"
+    rescue Errno::ECONNREFUSED
+      warning 'Connection refused'
+    rescue RestClient::RequestFailed => e
+      # #YELLOW Better handle github rate limiting case
+      # (with data from e.response.headers)
+      warning "Request failed: #{e.inspect}"
+    rescue RestClient::RequestTimeout
+      warning 'Connection timed out'
+    rescue RestClient::Unauthorized
+      warning 'Missing or incorrect Github API credentials'
+    rescue JSON::ParserError
+      warning 'Github API returned invalid JSON'
+  end
 
   def run
-
     # Set the token from the commandline or read it in from a file.  Preference is given towards the later and at some point it may be enforced.
     token = config[:token] || SensuPluginsGithub::Auth::acquire_git_token
 
@@ -88,7 +87,7 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
 
     exclude_list = config[:exclude] || ''
 
-    data = api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", api_url, config[:token])
+    data = api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", api_url, token)
     data.each do |d|
       user_list << d[:login] if ! exclude_list.include?(d[:login])
     end
