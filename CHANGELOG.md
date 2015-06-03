@@ -10,6 +10,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - check-user-2fa.rb 
     - Check to alert upon org users that do not have 2FA enabled
+
 ### Fixed
 - added binstubs
 
