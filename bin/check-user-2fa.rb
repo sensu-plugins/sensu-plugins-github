@@ -58,32 +58,35 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
          description: 'List of users to exclude'
 
   def api_request(resource, api, token) #rubocop:disable all
-      endpoint = api + resource
-      request = RestClient::Resource.new(endpoint, timeout: 30)
-      headers = {}
-      headers[:Authorization] = "token #{ token }"
-      JSON.parse(request.get(headers), symbolize_names: true)
-    rescue RestClient::ResourceNotFound
-      warning "Resource not found (or not accessible): #{resource}"
-    rescue Errno::ECONNREFUSED
-      warning 'Connection refused'
-    rescue RestClient::RequestFailed => e
-      # #YELLOW Better handle github rate limiting case
-      # (with data from e.response.headers)
-      warning "Request failed: #{e.inspect}"
-    rescue RestClient::RequestTimeout
-      warning 'Connection timed out'
-    rescue RestClient::Unauthorized
-      warning 'Missing or incorrect Github API credentials'
-    rescue JSON::ParserError
-      warning 'Github API returned invalid JSON'
+    endpoint = api + resource
+    request = RestClient::Resource.new(endpoint, timeout: 30)
+    headers = {}
+    headers[:Authorization] = "token #{ token }"
+    JSON.parse(request.get(headers), symbolize_names: true)
+  rescue RestClient::ResourceNotFound
+    warning "Resource not found (or not accessible): #{resource}"
+  rescue Errno::ECONNREFUSED
+    warning 'Connection refused'
+  rescue RestClient::RequestFailed => e
+    # #YELLOW Better handle github rate limiting case
+    # (with data from e.response.headers)
+    warning "Request failed: #{e.inspect}"
+  rescue RestClient::RequestTimeout
+    warning 'Connection timed out'
+  rescue RestClient::Unauthorized
+    warning 'Missing or incorrect Github API credentials'
+  rescue JSON::ParserError
+    warning 'Github API returned invalid JSON'
   end
 
   def run
-    # Set the token from the commandline or read it in from a file.  Preference is given towards the later and at some point it may be enforced.
-    token = config[:token] || SensuPluginsGithub::Auth::acquire_git_token
+    # Set the token from the commandline or read it in from a file.  Preference
+    # is given towards the later and at some point it may be enforced.
+    token = config[:token] || SensuPluginsGithub::Auth.acquire_git_token
 
-    # This is the default url and will be fine for most people, github enterprise customers will have a url based upon the org name and will need to set it at the commandline.
+    # This is the default url and will be fine for most people,
+    # github enterprise customers will have a url based upon the org name and
+    # will need to set it at the commandline.
     api_url = config[:api] || 'https://api.github.com'
 
     # List to hold users who do not have 2FA
