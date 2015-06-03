@@ -27,8 +27,12 @@
 #   for details.
 #
 
-$:.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
-require 'sensu-plugins-github'
+require 'sensu-plugin/check/cli'
+require 'rest-client'
+require 'json'
+
+# $LOAD_PATH.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
+# require 'sensu-plugins-github'
 
 class CheckUser2FA < Sensu::Plugin::Check::CLI
   option :api,
@@ -60,7 +64,7 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
       headers[:Authorization] = "token #{ token }"
       JSON.parse(request.get(headers), symbolize_names: true)
     rescue RestClient::ResourceNotFound
-      CLI::warning "Resource not found (or not accessible): #{resource}"
+      warning "Resource not found (or not accessible): #{resource}"
     rescue Errno::ECONNREFUSED
       warning 'Connection refused'
     rescue RestClient::RequestFailed => e
@@ -89,9 +93,9 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
 
     data = api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", api_url, token)
     data.each do |d|
-      user_list << d[:login] if ! exclude_list.include?(d[:login])
+      user_list << d[:login] unless exclude_list.include?(d[:login])
     end
-    critical("The following users don't have 2FA enabled: #{ user_list }") if user_list != []
+    critical("The following users don't have 2FA enabled: #{ user_list }") unless user_list == []
     ok
   end
 end
