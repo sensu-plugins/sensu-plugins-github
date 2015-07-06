@@ -61,7 +61,7 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
     endpoint = api + resource
     request = RestClient::Resource.new(endpoint, timeout: 30)
     headers = {}
-    headers[:Authorization] = "token #{ token }"
+    headers[:Authorization] = "token #{token}"
     JSON.parse(request.get(headers), symbolize_names: true)
   rescue RestClient::ResourceNotFound
     warning "Resource not found (or not accessible): #{resource}"
@@ -98,7 +98,7 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
     data.each do |d|
       user_list << d[:login] unless exclude_list.include?(d[:login])
     end
-    critical("The following users don't have 2FA enabled: #{ user_list }") unless user_list == []
+    critical("The following users don't have 2FA enabled: #{user_list}") unless user_list == []
     ok
   end
 end
