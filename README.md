@@ -14,14 +14,16 @@
 Interacts with Github API to generate metrics about repo.
 
 ## Files
- * bin/github-repo-metrics.rb
+ * bin/check-github-rate-limit.rb
+ * bin/check-user-2fa.rb
+ * bin/metrics-github-repo.rb
 
 ## Usage
 
-Your github token must be placed in *~/.ssh/git_token*, you should not be entring secure items on the commandline.  The plugin will continue to be backwards compatible for a period but the ability to specify the token on the commandline will be removed in the **0.1.0** release.
+Your github token must be placed in *~/.ssh/git_token*, you should not be entering secure items on the commandline.
 
 ## Installation
 
-[Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
+[Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
 
 ## Notes
