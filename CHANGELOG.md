@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased[unreleased]
 
+## [1.1.0] - 2015-09-10
+### Added
+- check-github-system-status for checking the status of github itself
+
 ## [1.0.0] - 2015-08-14
 ### Added
 - check-github-rate-limit.rb for checking the rate limit of a user

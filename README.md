@@ -15,6 +15,7 @@ Interacts with Github API to generate metrics about repo.
 
 ## Files
  * bin/check-github-rate-limit.rb
+ * bin/check-github-system-status.rb
  * bin/check-user-2fa.rb
  * bin/metrics-github-repo.rb
 
