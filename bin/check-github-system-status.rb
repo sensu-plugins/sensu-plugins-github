@@ -32,9 +32,17 @@ require 'rest-client'
 require 'json'
 
 class CheckSystemStatus < Sensu::Plugin::Check::CLI
+  option :json,
+         short: '-j',
+         long: '--json',
+         boolean: true,
+         default: true,
+         description: 'Use json for output'
+
   def api_request(endpoint)
     request = RestClient::Resource.new(endpoint)
     status_json = JSON.parse(request.get)
+    ok status_json if config[:json]
     case status_json['status']
     when 'good'
       ok "GitHub status is #{status_json['status']} at: #{status_json['created_on']}"
