@@ -42,9 +42,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [0.0.3] - 2015-04-02
 ## [0.0.2] - 2015-02-12
-## [0.0.1] - 2015-02-11
+## 0.0.1 - 2015-02-11
 
-[unreleased]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.0.0...HEAD
+[unreleased]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.5...1.0.0
 [0.0.5]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.4...0.0.5
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.3...0.0.4
