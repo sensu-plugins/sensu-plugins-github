@@ -5,6 +5,16 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased[unreleased]
 
+## [2.0.0] - 2016-04-26
+### Removed
+- support for Rubies 1.0.3 and 2.0
+
+### Added
+- support for Ruby 2.3.0
+
+### Changed
+- Check github status inside json
+
 ## [1.1.0] - 2015-09-10
 ### Added
 - check-github-system-status for checking the status of github itself
@@ -44,7 +54,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [0.0.2] - 2015-02-12
 ## 0.0.1 - 2015-02-11
 
-[unreleased]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.1.0...HEAD
+[unreleased]: https://github.com/sensu-plugins/sensu-plugins-github/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.1.0...2.0.0
 [1.1.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.5...1.0.0
 [0.0.5]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.4...0.0.5
