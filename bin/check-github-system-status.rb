@@ -32,9 +32,27 @@ require 'rest-client'
 require 'json'
 
 class CheckSystemStatus < Sensu::Plugin::Check::CLI
+  option :json,
+         short: '-j',
+         long: '--json',
+         boolean: true,
+         default: true,
+         description: 'Use json for output'
+
   def api_request(endpoint)
     request = RestClient::Resource.new(endpoint)
-    JSON.parse(request.get)
+    status_json = JSON.parse(request.get)
+    ok status_json if config[:json]
+    case status_json['status']
+    when 'good'
+      ok "GitHub status is #{status_json['status']} at: #{status_json['created_on']}"
+    when 'minor'
+      warning "GitHub status is #{status_json['status']} at: #{status_json['created_on']}"
+    when 'major'
+      critical "GitHub status is #{status_json['status']} at: #{status_json['created_on']}"
+    else
+      unknown "GitHub status is #{status_json['status']} at: #{status_json['created_on']} - #{status_json}"
+    end
   rescue RestClient::ResourceNotFound
     warning "Resource not found (or not accessible): #{resource}"
   rescue Errno::ECONNREFUSED
@@ -49,6 +67,6 @@ class CheckSystemStatus < Sensu::Plugin::Check::CLI
 
   def run
     status_url = 'https://status.github.com/api/status.json'
-    ok api_request(status_url)
+    api_request(status_url)
   end
 end
