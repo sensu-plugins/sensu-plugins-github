@@ -6,6 +6,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## Unreleased[unreleased]
 ### Added
 - Testing for Ruby 2.4.1
+### Breaking Changes
+- Bump sensu-plugin runtime dependency to 2.0 for Ruby 2.4.1 support
 
 ## [2.0.0] - 2016-04-26
 ### Removed
