@@ -3,11 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'date'
 
-if RUBY_VERSION < '2.0.0'
-  require 'sensu-plugins-github'
-else
-  require_relative 'lib/sensu-plugins-github'
-end
+require_relative 'lib/sensu-plugins-github'
 
 # pvt_key = '~/.ssh/gem-private_key.pem'
 
@@ -39,7 +35,7 @@ Gem::Specification.new do |s|
   s.version                = SensuPluginsGithub::Version::VER_STRING
 
   s.add_runtime_dependency 'rest-client',  '1.8.0'
-  s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
+  s.add_runtime_dependency 'sensu-plugin', '~> 2.0'
 
   s.add_development_dependency 'bundler',                   '~> 1.7'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
