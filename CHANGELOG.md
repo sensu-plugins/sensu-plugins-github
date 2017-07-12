@@ -3,11 +3,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
-## Unreleased[unreleased]
+## [Unreleased]
+
+## [3.0.0] - 2017-07-11
 ### Added
-- Testing for Ruby 2.4.1
+- Testing for Ruby 2.4.1 (@thomasriley)
 ### Breaking Changes
-- Bump sensu-plugin runtime dependency to 2.0 for Ruby 2.4.1 support
+- Bump sensu-plugin runtime dependency to 2.0 for Ruby 2.4.1 support (@thomasriley)
 
 ## [2.0.0] - 2016-04-26
 ### Removed
@@ -58,7 +60,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [0.0.2] - 2015-02-12
 ## 0.0.1 - 2015-02-11
 
-[unreleased]: https://github.com/sensu-plugins/sensu-plugins-github/compare/2.0.0...HEAD
+[unreleased]: https://github.com/sensu-plugins/sensu-plugins-github/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.1.0...2.0.0
 [1.1.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.5...1.0.0
