@@ -31,7 +31,7 @@ require 'sensu-plugin/metric/cli'
 require 'rest-client'
 require 'json'
 
-$:.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
+$LOAD_PATH.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
 require 'sensu-plugins-github'
 
 #
@@ -124,7 +124,7 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
     [config[:repo] || acquire_org_repos].flatten.each do |repo|
       schema = "#{config[:scheme]}.#{config[:owner]}.#{repo}"
       now = Time.now.to_i
-      %w(pulls branches tags contributors languages).each do |resource|
+      %w[pulls branches tags contributors languages].each do |resource|
         output "#{schema}.stats.#{resource}", repo_api_request(repo, resource).count, now
       end
 
