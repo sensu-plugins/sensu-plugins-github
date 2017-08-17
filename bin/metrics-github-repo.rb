@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   github-repo-metrics
+#   metrics-github-repo
 #
 # DESCRIPTION:
 #   Interacts with Github API to generate metrics about repo.
@@ -31,8 +31,8 @@ require 'sensu-plugin/metric/cli'
 require 'rest-client'
 require 'json'
 
-# $:.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
-# require 'sensu-plugins-github'
+$:.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
+require 'sensu-plugins-github'
 
 #
 # AggregateMetrics
@@ -48,7 +48,7 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
          short: '-t TOKEN',
          long: '--token TOKEN',
          description: 'Github OAuth Token',
-         default: SensuPluginsGithub.acquire_git_token
+         default: SensuPluginsGithub::Auth.acquire_git_token
 
   option :repo,
          short: '-r REPO',

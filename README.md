@@ -8,7 +8,7 @@
 
 ## Functionality
 
-**github-repo-metrics**
+**metrics-github-repo**
 
 Interacts with Github API to generate metrics about repo.
 
