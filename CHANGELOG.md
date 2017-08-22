@@ -89,12 +89,12 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## 0.0.1 - 2015-02-11
 
-[0.0.2]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.1...0.0.2
-[0.0.3]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.2...0.0.3
-[0.0.4]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.3...0.0.4
-[0.0.5]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.4...0.0.5
-[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.5...1.0.0
-[1.1.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.0.0...1.1.0
-[2.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.1.0...2.0.0
-[3.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/2.0.0...3.0.0
 [unreleased]: https://github.com/sensu-plugins/sensu-plugins-github/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/2.0.0...3.0.0
+[2.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.1.0...2.0.0
+[1.1.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/1.0.0...1.1.0
+[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.5...1.0.0
+[0.0.5]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.4...0.0.5
+[0.0.4]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.3...0.0.4
+[0.0.3]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.2...0.0.3
+[0.0.2]: https://github.com/sensu-plugins/sensu-plugins-github/compare/0.0.1...0.0.2
