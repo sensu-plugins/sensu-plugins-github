@@ -9,7 +9,11 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Breaking Change
 
 - The github-repo-metrics plugin has been renamed to metrics-github-repo to match other plugins and what was written in the readme
-- The metrics plugin now properly loads the Auth module and handles reading the local token
+- The Auth library now returns the token as a string instead of an array, which was not properly parsed by the plugins
+
+### Changed
+
+- The plugins now correctly load the Auth library for pulling the token automatically
 
 ## [3.0.0] - 2017-07-11
 
