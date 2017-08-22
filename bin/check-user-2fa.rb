@@ -38,12 +38,14 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
   option :api,
          short: '-a URL',
          long: '--api URL',
-         description: 'Github API URL'
+         description: 'Github API URL',
+         default: 'https://api.github.com'
 
   option :token,
          short: '-t TOKEN',
          long: '--token TOKEN',
-         description: 'Github OAuth Token'
+         description: 'Github OAuth Token',
+         default: SensuPluginsGithub::Auth.acquire_git_token
 
   option :org,
          short: '-o ORG',
@@ -80,21 +82,12 @@ class CheckUser2FA < Sensu::Plugin::Check::CLI
   end
 
   def run
-    # Set the token from the commandline or read it in from a file.  Preference
-    # is given towards the later and at some point it may be enforced.
-    token = config[:token] || SensuPluginsGithub::Auth.acquire_git_token
-
-    # This is the default url and will be fine for most people,
-    # github enterprise customers will have a url based upon the org name and
-    # will need to set it at the commandline.
-    api_url = config[:api] || 'https://api.github.com'
-
     # List to hold users who do not have 2FA
     user_list = []
 
     exclude_list = config[:exclude] || ''
 
-    data = api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", api_url, token)
+    data = api_request("/orgs/#{config[:org]}/members?filter=2fa_disabled", @config[:api], @config[:token])
     data.each do |d|
       user_list << d[:login] unless exclude_list.include?(d[:login])
     end
