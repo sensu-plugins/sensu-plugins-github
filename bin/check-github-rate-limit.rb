@@ -31,6 +31,9 @@ require 'sensu-plugin/check/cli'
 require 'rest-client'
 require 'json'
 
+$LOAD_PATH.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
+require 'sensu-plugins-github'
+
 class CheckUser2FA < Sensu::Plugin::Check::CLI
   option :api,
          short: '-a URL',
