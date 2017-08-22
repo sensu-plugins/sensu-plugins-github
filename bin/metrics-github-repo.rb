@@ -17,6 +17,7 @@
 #
 # USAGE:
 #
+# metrics-github-repo.rb --owner myorg --repo myrepo
 #
 # NOTES:
 #
