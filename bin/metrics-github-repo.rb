@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #
-#   github-repo-metrics
+#   metrics-github-repo
 #
 # DESCRIPTION:
 #   Interacts with Github API to generate metrics about repo.
@@ -17,6 +17,7 @@
 #
 # USAGE:
 #
+# metrics-github-repo.rb --owner myorg --repo myrepo
 #
 # NOTES:
 #
@@ -31,8 +32,8 @@ require 'sensu-plugin/metric/cli'
 require 'rest-client'
 require 'json'
 
-# $:.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
-# require 'sensu-plugins-github'
+$LOAD_PATH.unshift([File.expand_path(File.dirname(__FILE__)), '..', 'lib'].join('/'))
+require 'sensu-plugins-github'
 
 #
 # AggregateMetrics
@@ -48,7 +49,7 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
          short: '-t TOKEN',
          long: '--token TOKEN',
          description: 'Github OAuth Token',
-         default: SensuPluginsGithub.acquire_git_token
+         default: SensuPluginsGithub::Auth.acquire_git_token
 
   option :repo,
          short: '-r REPO',
@@ -124,7 +125,7 @@ class AggregateMetrics < Sensu::Plugin::Metric::CLI::Graphite
     [config[:repo] || acquire_org_repos].flatten.each do |repo|
       schema = "#{config[:scheme]}.#{config[:owner]}.#{repo}"
       now = Time.now.to_i
-      %w(pulls branches tags contributors languages).each do |resource|
+      %w[pulls branches tags contributors languages].each do |resource|
         output "#{schema}.stats.#{resource}", repo_api_request(repo, resource).count, now
       end
 
